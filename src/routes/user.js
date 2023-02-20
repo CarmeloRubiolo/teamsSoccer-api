@@ -35,9 +35,9 @@ router.get('/teams/:id', (req, res) => {
 
 router.put('/teams/:id', (req, res) => {
     const { id } = req.params;
-    const { name, apodo, fundacion, socios, presidente, ubicacion, estadio, escudo, titulos, equipacion } = req.body
+    const { name, apodo, fundacion, socios, presidente, ubicacion, estadio, escudo, titulos, equipacion, imgEstadio } = req.body
     userSchema
-        .updateOne({ _id: id }, { $set: {name, apodo, fundacion, socios, presidente, ubicacion, estadio, escudo, titulos, equipacion} })
+        .updateOne({ _id: id }, { $set: {name, apodo, fundacion, socios, presidente, ubicacion, estadio, escudo, titulos, equipacion, imgEstadio} })
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
