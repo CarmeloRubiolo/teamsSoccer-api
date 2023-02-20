@@ -1,20 +1,20 @@
-import express, { json } from 'express';
-import { connect } from 'mongoose';
+const express = require('express')
+const mongoose = require('mongoose');
 require("dotenv").config();
-import userRoutes from './routes/user'; 
+const userRoutes = require('./routes/user') 
 
 
 const app = express();
 const port = process.env.PORT || 9000;
 
 //CORS
-import cors from 'cors';
+const cors = require('cors')
 app.use(cors())
 
 
 //middleware
 
-app.use(json());
+app.use(express.json());
 app.use('/api', userRoutes);
 
 
@@ -26,7 +26,7 @@ app.get('/', (req, res) =>{
 });
 
 //mongodb connection
-connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI)
 .then(() => console.log('Connected to MongoDB Atlas'))
 .catch((error) => console.error(error))
 
